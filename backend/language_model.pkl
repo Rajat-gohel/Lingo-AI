@@ -1,0 +1,93 @@
+import os
+import pandas as pd
+import joblib
+
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+
+# STEP 1: Load dataset
+data = pd.read_csv("dataset.csv")
+
+print("Dataset loaded")
+print("Total records:", len(data))
+
+
+# STEP 2: Remove empty data
+data = data.dropna(subset=["text", "language"])
+
+
+# STEP 3: Separate input and output
+X = data["text"].astype(str)
+y = data["language"].astype(str)
+
+
+# STEP 4: Split dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    random_state=42,
+    stratify=y
+)
+
+
+# STEP 5: Create TF-IDF vectorizer
+vectorizer = TfidfVectorizer(
+    analyzer="char",
+    ngram_range=(2, 5)
+)
+
+
+# STEP 6: Convert text into numbers
+X_train_vector = vectorizer.fit_transform(X_train)
+X_test_vector = vectorizer.transform(X_test)
+
+
+# STEP 7: Create ML model
+model = LogisticRegression(
+    max_iter=1000
+)
+
+
+# STEP 8: Train model
+model.fit(
+    X_train_vector,
+    y_train
+)
+
+print("Model training completed")
+
+
+# STEP 9: Test model
+prediction = model.predict(X_test_vector)
+
+accuracy = accuracy_score(
+    y_test,
+    prediction
+)
+
+print("Accuracy:", accuracy)
+
+
+# STEP 10: Create PKL files
+joblib.dump(
+    model,
+    "language_model.pkl"
+)
+
+joblib.dump(
+    vectorizer,
+    "vectorizer.pkl"
+)
+
+
+# STEP 11: Success message
+print("\n================================")
+print("PKL FILES CREATED SUCCESSFULLY")
+print("================================")
+
+print("1. language_model.pkl")
+print("2. vectorizer.pkl")
