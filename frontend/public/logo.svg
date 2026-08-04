@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"></stop>
+
+      <stop offset="100%" stop-color="#06b6d4"></stop>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="120" fill="url(#gradient)"></rect>
+
+  <!-- Translation bubbles -->
+
+  <path d="M110 145
+       C110 115 135 90 165 90
+       H300
+       C330 90 355 115 355 145
+       V245
+       C355 275 330 300 300 300
+       H225
+       L175 350
+       V300
+       H165
+       C135 300 110 275 110 245
+       Z" fill="white"></path>
+
+  <path d="M205 205
+       H365
+       C395 205 420 230 420 260
+       V350
+       C420 380 395 405 365 405
+       H335
+       V450
+       L290 405
+       H205
+       C175 405 150 380 150 350
+       V330
+       H300
+       C350 330 390 290 390 240
+       V205
+       Z" fill="white" opacity="0.9"></path>
+
+  <!-- A -->
+
+  <text x="150" y="225" font-family="Arial, sans-serif" font-size="95" font-weight="700" fill="#6366f1">
+    A
+  </text>
+
+  <!-- 文 -->
+
+  <text x="250" y="285" font-family="Arial, sans-serif" font-size="75" font-weight="700" fill="#06b6d4">
+    文
+  </text>
+
+</svg>
